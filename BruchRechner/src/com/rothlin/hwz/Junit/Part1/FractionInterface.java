@@ -27,7 +27,7 @@ public interface FractionInterface extends Remote {
 	// -----------------
 	
 	public boolean isUserInputValid(String UserInput) throws RemoteException;
-	public float divToDecimal() throws RemoteException;
+	public double divToDecimal() throws RemoteException;
 	  
 	// common methods   
 	public FractionInterface parseBruch(String bruchStr) throws RemoteException;

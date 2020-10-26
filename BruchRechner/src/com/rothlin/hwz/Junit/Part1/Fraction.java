@@ -92,11 +92,11 @@ return false;
         }
 		
 		@Override
-		public float divToDecimal() throws RemoteException 
+		public double divToDecimal() throws RemoteException 
 		{		
-			float resultDecimal = 0f;
+			double resultDecimal = 0.0d;
  			
-			resultDecimal = (zaehler/nenner); 
+			resultDecimal = ((Double.valueOf(zaehler))/Double.valueOf(nenner)); 
 
 			return resultDecimal;
 		}
