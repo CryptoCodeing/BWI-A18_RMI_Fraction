@@ -22,10 +22,10 @@ public class Fraction_RMI_Client {
 	        while(UserInput == "") 
 	        {	        	
 // Ask User to type in Fraction       
-System.out.println("Bitte einen 3-stelligen Bruch eintippen. Zum Beispiel [1/4] oder [3/8].");
-System.out.println("Klicken Sie Enter und er wird Ihnen in dezimaler Schreibweise umgerechnet.");
+System.out.println("Bitte  Bruch Ihrer Wahl eintippen. Zum Beispiel [12345/45] oder [31222123/44523434342438].");
+System.out.println("Klicken Sie Enter und der Bruch wird Ihnen in dezimaler Schreibweise dargestellt:");
 	       
-// Get User Input and validate and create Fraction from User Input and show User dividend and divisor
+// Get User Input, validate and create Fraction from User Input and 
 	        		BufferedReader Console = new BufferedReader (new InputStreamReader (System.in));	      	        					
 	        		UserInput = Console.readLine();	 // NOT a .NET Function 
 	        		       		
@@ -39,7 +39,8 @@ System.out.println("");
 System.out.println("");
 System.out.println("");
 System.out.println("------------------------------------------------------------------------------------------------------------------------");
-System.out.println("");                  
+System.out.println("");           
+// show User dividend and divisor
 System.out.println("Zaehler Ihres Input" + " = " + remote.getZaehler() + " ; Nenner Ihres Input = " + remote.getNenner());   
 System.out.println("");
 
