@@ -16,17 +16,17 @@ public class Fraction_RMI_Client {
 	        FractionInterface remote = (FractionInterface) registry.lookup(Fraction_RMI_Definitions.RMI_ID);
 	        
 	        String UserInput = "";	        
-	        while(UserInput == "" ) 
+	        while(UserInput == "") 
 	        {	        	
 // Ask User to type in Fraction       
-System.out.println("Bitte einen 3-stelligen Bruch eintippen. Zum Beispiel [1/4] oder [1/8].");
-System.out.println("Klicken Sie Enter und er wird in dezimal Schreibweise umgerechnet.");
+System.out.println("Bitte einen 3-stelligen Bruch eintippen. Zum Beispiel [1/4] oder [3/8].");
+System.out.println("Klicken Sie Enter und er wird Ihnen in dezimaler Schreibweise umgerechnet.");
 	       
 // Get User Input and validate
 	        		BufferedReader Console = new BufferedReader (new InputStreamReader (System.in));	      	        					
 	        		UserInput = Console.readLine();	  
 	        		       		
-	        	if (!remote.isUserInputValid(UserInput) )
+	        	if (!remote.isUserInputValid(UserInput))
 	        		{
 	        		System.out.println("Ihre Eingabe [" + UserInput + "] ist ungültig.");
 	        		UserInput = "";
@@ -41,14 +41,14 @@ System.out.println("");
 
 // Create Fraction from User Input and show User dividend and divisor
 					int UserInputZaehler = Character.getNumericValue(UserInput.charAt(0)) ;
-					int UserInputNenner = Character.getNumericValue(UserInput.charAt(2))  ;
+					int UserInputNenner  = Character.getNumericValue(UserInput.charAt(2)) ;
                     remote.setBruch(UserInputZaehler,UserInputNenner);	
                     
-System.out.println("Zaehler Ihres Input" + " = " + remote.getZaehler()  + " ; Nenner Ihres Input = " + remote.getNenner() );   
+System.out.println("Zaehler Ihres Input" + " = " + remote.getZaehler() + " ; Nenner Ihres Input = " + remote.getNenner());   
 System.out.println("");
 
 // Convert Fraction to Decimal Number and show User 						
-System.out.println("Bruch in Dezimal Schreibweise = " +  remote.divToDecimal());   
+System.out.println("Bruch in Dezimal Schreibweise = " + remote.divToDecimal());   
 System.out.println("");
 System.out.println("------------------------------------------------------------------------------------------------------------------------");
 System.out.println("");
