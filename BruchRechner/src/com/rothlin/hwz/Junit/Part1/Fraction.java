@@ -48,7 +48,7 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		//Constructors
 		public Fraction() throws RemoteException { setBruch(0, 1);                                                            }
 		public Fraction(FractionInterface a) throws RemoteException { setBruch(a.getZaehler(), a.getNenner());                                   }
-		public Fraction(String a) throws RemoteException { FractionInterface b = parseBruch(a); setBruch(b.getZaehler(), b.getNenner()); }
+		//public Fraction(String a) throws RemoteException { FractionInterface b = parseBruch(a); setBruch(b.getZaehler(), b.getNenner()); }
 		public Fraction(int zaehler, int nenner) throws RemoteException { setBruch(zaehler, nenner);                                                 }
 		public Fraction(int zaehler) throws RemoteException { setBruch(zaehler, 1) ;} 
 		
@@ -56,39 +56,46 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		//Business methods
 //Selfmade		
 		@Override
-		public boolean isUserInputValid(String UserInput) throws RemoteException {
-			
-		if(UserInput.equals("///"))
-    	{
-return false;	
-    	}
-			
-		if (UserInput.isEmpty()) 
-		{		
-return false;
-		}	
-		
-		if (UserInput.length() != 3)
+		public boolean SetUserInput(String UserInput) throws RemoteException {
+// offically improved by damian (c)
+		if (!UserInput.matches("^[0-9]+\\/[0-9]+$"))
 		{
-return false;
-		}
+return false;			
+		}		
+//			
+//		if(UserInput.equals("///"))
+//    	{
+//return false;	
+//    	}
+//			
+//		if (UserInput.isEmpty()) 
+//		{		
+//return false;
+//		}	
+//		
+//		if (UserInput.length() != 3)
+//		{
+//return false;
+//		}
+//		
+//		if (UserInput.charAt(1) != '/')					
+//		{		
+//return false;
+//		}
 		
-		if (UserInput.charAt(1) != '/')					
-		{		
-return false;
-		}
+//		String UserInputReplace = UserInput.replace("/", "0");
+//		try
+//		{
+//			Integer.parseInt(UserInputReplace);
+//		}
+//	  catch (NumberFormatException nfe) 
+//		{
+//return false;
+//	    }	
 		
-		String UserInputReplace = UserInput.replace("/", "0");
-		try
-		{
-			Integer.parseInt(UserInputReplace);
-		}
-	  catch (NumberFormatException nfe) 
-		{
-	        return false;
-	    }			
 // If we reach this point Input is Valid	
-		return true;
+		this.parseBruch(UserInput);	
+		return true;	
         }
 		
 		@Override
@@ -100,26 +107,27 @@ return false;
 
 			return resultDecimal;
 		}
-		
-// Existing		
-		public FractionInterface parseBruch(String bruchStr) throws RemoteException {
+			
+		public void parseBruch(String bruchStr) throws RemoteException {
 	        bruchStr = bruchStr.replaceAll("\\s+","");
 	        Pattern p = Pattern.compile("(\\d+)(?:/(\\d+))?");
 	        Matcher m = p.matcher(bruchStr);
 	        if (m.matches()) {
 	            String[] fractionParts = bruchStr.split("/");
 	            int zaehler = Integer.parseInt(fractionParts[0]);
-				
+				this.zaehler = zaehler;
+	            
 	            int nenner = 1;
 	            if (fractionParts.length >= 2) {
 	                nenner = Integer.parseInt(fractionParts[1]);
+	                this.nenner = nenner;
 	            }
-	            return new Fraction(zaehler,nenner);
 	        } else {
 	            throw new IllegalArgumentException();
 	        }
 	    }
 		
+// Existing			
 		public FractionInterface add (FractionInterface summand2) throws RemoteException   { return add(this, summand2);}
 		public FractionInterface add (FractionInterface summand1, FractionInterface summand2) throws RemoteException {
 			int resNenner = summand1.getNenner() * summand2.getNenner();

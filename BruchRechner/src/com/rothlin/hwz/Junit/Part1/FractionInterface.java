@@ -26,11 +26,11 @@ public interface FractionInterface extends Remote {
 	// Business Methoden
 	// -----------------
 	
-	public boolean isUserInputValid(String UserInput) throws RemoteException;
+	public boolean SetUserInput(String UserInput) throws RemoteException;
 	public double divToDecimal() throws RemoteException;
 	  
 	// common methods   
-	public FractionInterface parseBruch(String bruchStr) throws RemoteException;
+	public void parseBruch(String bruchStr) throws RemoteException;
 	
 	// Operations
 	public FractionInterface operation(String opStr) throws RemoteException;
