@@ -12,7 +12,7 @@ public class Fraction_RMI_Server {
 	public static void main(String[] args) throws RemoteException, AlreadyBoundException {
 		
 		Registry registry = LocateRegistry.createRegistry(Fraction_RMI_Definitions.RMI_PORT);
-		
+// Create Remote Objects		
 		Fraction impl = new Fraction();
 		registry.bind(Fraction_RMI_Definitions.RMI_ID,impl);
 		
