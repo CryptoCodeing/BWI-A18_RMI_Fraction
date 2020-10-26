@@ -11,7 +11,7 @@ import java.rmi.registry.Registry;
 public class Fraction_RMI_Client {
 
 	public static void main(String[] args) throws RemoteException, NotBoundException, IOException {
-// Hello GitHub Test		
+// Hello GitHub		
 // Create Instance of Remote Object
 		    Registry registry = LocateRegistry.getRegistry(Fraction_RMI_Definitions.RMI_ServerHost, Fraction_RMI_Definitions.RMI_PORT);
 	        FractionInterface remote = (FractionInterface) registry.lookup(Fraction_RMI_Definitions.RMI_ID);
