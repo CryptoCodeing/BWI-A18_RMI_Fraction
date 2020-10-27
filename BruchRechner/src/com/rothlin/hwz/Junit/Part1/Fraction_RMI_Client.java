@@ -12,20 +12,20 @@ public class Fraction_RMI_Client {
 
 	public static void main(String[] args) throws RemoteException, NotBoundException, IOException {	
 
+// Create Instance of Remote Object
+	    Registry registry = LocateRegistry.getRegistry(Fraction_RMI_Definitions.RMI_ServerHost, Fraction_RMI_Definitions.RMI_PORT);
+        FractionInterface remote = (FractionInterface) registry.lookup(Fraction_RMI_Definitions.RMI_ID);
+        
 		while(true) 
 		{
-// Create Instance of Remote Object
-		    Registry registry = LocateRegistry.getRegistry(Fraction_RMI_Definitions.RMI_ServerHost, Fraction_RMI_Definitions.RMI_PORT);
-	        FractionInterface remote = (FractionInterface) registry.lookup(Fraction_RMI_Definitions.RMI_ID);
-	        
 	       String UserInput  = "";	        
 	        while(UserInput == "") 
 	        {	        	
 // Ask User to type in Fraction       
-System.out.println("Bitte  Bruch Ihrer Wahl eintippen. Zum Beispiel [12345/45] oder [31222123/44523434342438].");
+System.out.println("Bitte Bruch Ihrer Wahl eintippen. Zum Beispiel [12345/45] oder [31222123/44523434342438].");
 System.out.println("Klicken Sie Enter und der Bruch wird Ihnen in dezimaler Schreibweise dargestellt:");
 	       
-// Get User Input, validate and create Fraction from User Input and 
+// Get User Input, validate and create Fraction from User Input
 	        		BufferedReader Console = new BufferedReader (new InputStreamReader (System.in));	      	        					
 	        		UserInput = Console.readLine();	 // NOT a .NET Function 
 	        		       		
